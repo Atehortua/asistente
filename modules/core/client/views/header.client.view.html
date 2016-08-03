@@ -1,4 +1,40 @@
-<div class="container" data-ng-controller="HeaderController">
+<div data-ng-controller="HeaderController">
+  <md-toolbar>
+    <div class="md-toolbar-tools container">
+      <md-button href="/">App</md-button>
+      <span flex></span>
+      <md-menu  data-ng-show="authentication.user">
+        <md-button aria-label="open" ng-click="$mdOpenMenu($event)">
+          <img data-ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.displayName}}" class="header-profile-image" />
+          <span data-ng-bind="authentication.user.displayName"></span>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button data-ui-sref="settings.profile">Edit Profile</md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button data-ui-sref="settings.picture">Change Profile Picture</md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button data-ui-sref="settings.password">Change Password</md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button data-ui-sref="settings.accounts">Manage Social Accounts</md-button>
+          </md-menu-item>
+          <md-menu-divider class="md-primary"></md-menu-divider>
+          <md-menu-item>
+            <md-button href="/api/auth/signout" target="_self">Signout</md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+      <md-button data-ng-hide="authentication.user" class="md-hue-1" data-ui-sref="authentication.signup">Sign Up</md-button>
+      <md-button data-ng-hide="authentication.user" class="md-hue-1" data-ui-sref="authentication.signin">Sign In</md-button>
+    </div>
+  </md-toolbar>
+</div>
+
+
+<!--<div class="container" data-ng-controller="HeaderController">
   <div class="navbar-header">
     <button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
       <span class="sr-only">Toggle navigation</span>
@@ -56,4 +92,4 @@
       </li>
     </ul>
   </nav>
-</div>
+</div>-->
