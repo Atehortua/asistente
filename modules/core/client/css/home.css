@@ -1,0 +1,18 @@
+.parallax-img{
+    width: 100%;
+    background-image: url('../img/brand/parallax-default.jpg')  ;
+    background-color: #000066 !important;
+    height: 300px !important;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.box{
+    height: 460px;
+}
+
+.mini-box{
+    height: 222px;
+}

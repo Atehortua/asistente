@@ -1,6 +1,4 @@
-.content {
-  margin-top: 50px;
-}
+
 .undecorated-link:hover {
   text-decoration: none;
 }
@@ -35,14 +33,18 @@ a:hover .header-profile-image {
 }
 
 .theme-dark-header {
-  background-color: #2f2f2f !important;
+  background-color: #1b1b1b !important;
   color:white !important;
 }
 
 .theme-dark-content{
-  background: #393939 !important;
+  background: #393939;
 }
 
-.theme-dark-text *{
+.theme-dark-content md-card{
+  background-color: #1b1b1b !important;
+}
+
+.theme-dark-text{
   color:white !important;
 }
