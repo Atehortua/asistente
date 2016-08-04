@@ -4,5 +4,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
   function($scope, Authentication,  $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast, $timeout, $mdMedia) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
+
+    var ul = this
+
   }
 ]);
