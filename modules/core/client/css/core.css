@@ -33,3 +33,16 @@ a:hover .header-profile-image {
   padding-top: 11px !important;
   padding-bottom: 11px !important;
 }
+
+.theme-dark-header {
+  background-color: #2f2f2f !important;
+  color:white !important;
+}
+
+.theme-dark-content{
+  background: #393939 !important;
+}
+
+.theme-dark-text *{
+  color:white !important;
+}

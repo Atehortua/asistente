@@ -9,9 +9,9 @@ angular.module(ApplicationConfiguration.applicationModuleName).config([
   function($locationProvider, $mdThemingProvider, $mdIconProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
 
-    $mdThemingProvider.theme('default')
-        .primaryPalette('teal')
-        .accentPalette('red');
+    /*$mdThemingProvider.theme('default')
+        .primaryPalette('blue-grey',{'default':'500'})
+        .accentPalette('grey');*/
   }
 ]);
 
