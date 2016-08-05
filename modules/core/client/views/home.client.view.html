@@ -41,14 +41,19 @@
             </md-card-title>
           </md-card>
         </div>
+        <!-- links -->
         <div flex="50" layout="column" flex-xs="100">
           <div flex="100">
             <md-card class="mini-box1 md-whiteframe-5dp">
               <md-card-title class="tituloCard mdCardDark" layout="column">
                 <span>
                   <md-icon class="material-icons space-right">attach_file</md-icon><span class="mdl-badge mdl-badge--no-background" data-badge="{{links.length}}">Links</span>
-                  <md-icon class="material-icons pull-right add-links">add_box</md-icon>
-                  <md-icon ng-click="filterLinks = !filterLinks" ng-class="{'add-links-active':filterLinks}" class="material-icons pull-right add-links">filter_list</md-icon>
+                  <md-icon class="material-icons pull-right add-links">
+                    <md-tooltip md-direction="top">Agregar links</md-tooltip>add_box
+                  </md-icon>
+                  <md-icon ng-click="filterLinks = !filterLinks" ng-class="{'add-links-active':filterLinks}" class="material-icons pull-right add-links">
+                    <md-tooltip md-direction="top">Filtrar links</md-tooltip>filter_list
+                  </md-icon>
                 </span>
               </md-card-title>
               <md-card-content ng-show="filterLinks" md-theme="docs-dark" class="md-whiteframe-4dp mdCardDark">
@@ -62,20 +67,20 @@
                   <md-card ng-show="link.visible" class="card-links md-whiteframe-5dp" ng-class="link.categoria">
                     <md-card-title layout="column">
                       <span>
-                        <a target="_blank" ng-href="{{link.link}}" >{{link.name}}</a>
-                        <md-icon class="material-icons pull-right delete" ng-click="">delete</md-icon>
-                        <md-icon class="material-icons pull-right create" ng-click="">create</md-icon>
-                        <md-icon ng-if="!link.favorito" class="material-icons pull-right favorito" ng-click="link.favorito = !link.favorito">star_border</md-icon>
-                        <md-icon ng-if="link.favorito" class="material-icons pull-right favorito-activo" ng-click="link.favorito = !link.favorito">star</md-icon>
+                        <a target="_blank" ng-href="{{link.link}}" ><md-tooltip md-direction="top">{{link.link}}</md-tooltip>{{link.name}}</a>
+                        <md-icon class="material-icons pull-right delete" ng-click=""><md-tooltip md-direction="top">Eliminar link</md-tooltip>delete</md-icon>
+                        <md-icon class="material-icons pull-right create" ng-click=""><md-tooltip md-direction="top">Editar link</md-tooltip>create</md-icon>
+                        <md-icon ng-if="!link.favorito" class="material-icons pull-right favorito" ng-click="link.favorito = !link.favorito"><md-tooltip md-direction="top">Favorito</md-tooltip>star_border</md-icon>
+                        <md-icon ng-if="link.favorito" class="material-icons pull-right favorito-activo" ng-click="link.favorito = !link.favorito"><md-tooltip md-direction="top">Favorito</md-tooltip>star</md-icon>
                       </span>
                     </md-card-title>
                   </md-card>
                 </div>
               </md-card-content>
               <md-card-footer class="mdCardDark" layout="row"  layout-align="space-around center">
-                <span><md-icon class="material-icons">star</md-icon> {{getFavoriteLinks()}}</span>
-                <span><md-icon class="material-icons">visibility</md-icon> {{getVisibleLinks()}}</span>
-                <span><md-icon class="material-icons">filter</md-icon> {{getCategoriaLinks()}}</span>
+                <span><md-tooltip md-direction="bottom"># Favoritos</md-tooltip><md-icon class="material-icons">star</md-icon> {{getFavoriteLinks()}}</span>
+                <span><md-tooltip md-direction="bottom"># Visibles</md-tooltip><md-icon class="material-icons">visibility</md-icon> {{getVisibleLinks()}}</span>
+                <span><md-tooltip md-direction="bottom"># Categorias</md-tooltip><md-icon class="material-icons">filter</md-icon> {{getCategoriaLinks()}}</span>
               </md-card-footer>
             </md-card>
           </div>
