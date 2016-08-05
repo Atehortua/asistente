@@ -27,7 +27,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         visible:true,
         favorito:false
       },{name:'Soogle4',
-        categoria:$scope.categoLinks[1],
+        categoria:$scope.categoLinks[2],
         link:'https://www.google.com.co',
         visible:true,
         favorito:false
@@ -71,8 +71,23 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     }
 
     $scope.getCategoriaLinks = function(){
-      var c = 0;
-      return c;
+
+      var a = [];
+      var b = [];
+      $scope.links.forEach(function(link){
+        $scope.categoLinks.forEach(function(catego){
+          if(link.categoria === catego){
+            a.push(catego);
+          }
+        })
+      })
+      for(var i = 0;i < a.length;i++){
+        if(b.indexOf(a[i])===-1){
+          b.push(a[i]);
+        }
+      }
+
+      return b.length
     }
 
 

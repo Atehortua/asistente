@@ -60,7 +60,15 @@
               <md-card-content id="links" class="card-scroll mdContentLinks">
                 <div ng-repeat="link in links">
                   <md-card ng-show="link.visible" class="card-links md-whiteframe-5dp" ng-class="link.categoria">
-                    <md-card-title><a target="_blank" ng-href="{{link.link}}" >{{link.name}}</a></md-card-title>
+                    <md-card-title layout="column">
+                      <span>
+                        <a target="_blank" ng-href="{{link.link}}" >{{link.name}}</a>
+                        <md-icon class="material-icons pull-right delete" ng-click="">delete</md-icon>
+                        <md-icon class="material-icons pull-right create" ng-click="">create</md-icon>
+                        <md-icon ng-if="!link.favorito" class="material-icons pull-right favorito" ng-click="link.favorito = !link.favorito">star_border</md-icon>
+                        <md-icon ng-if="link.favorito" class="material-icons pull-right favorito-activo" ng-click="link.favorito = !link.favorito">star</md-icon>
+                      </span>
+                    </md-card-title>
                   </md-card>
                 </div>
               </md-card-content>
