@@ -65,6 +65,11 @@
 .add-links{
     color:white;
     cursor: pointer;
+    outline: none;
+}
+
+.add-links-active{
+    color: #ca9a23;
 }
 
 .add-links:hover{
@@ -87,4 +92,47 @@
 .change-parralax:hover md-icon{
     transition: color 0.5s;
     color: #3dc1ff;
+}
+
+/*links*/
+#links .card-links{
+    opacity: 0.5;
+}
+
+#links .card-links:hover{
+    transition: all 0.2s;
+    opacity: 1;
+}
+
+#links .card-links a{
+    color:white;
+    text-decoration: none;
+}
+
+.card-scroll{
+    overflow: auto;
+}
+
+#links .estudio{
+    border-bottom: 2px solid #2334ff;
+}
+
+#links .ocio{
+    border-bottom: 2px solid #4aff44;
+}
+#links .redes{
+    border-bottom: 2px solid white;
+}
+
+#links .entretenimiento{
+    border-bottom: 2px solid #ff332f;
+}
+
+md-input-container {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.mdContentLinks{
+    height: 300px;;
 }

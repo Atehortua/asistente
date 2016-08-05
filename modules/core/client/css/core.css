@@ -50,6 +50,19 @@ a:hover .header-profile-image {
   color:white !important;
 }
 
+.mdCardDark *{
+  color:white;
+}
+.mdl-badge.mdl-badge--no-background[data-badge]:after{
+  color:white !important;
+  opacity: 0.5;
+}
+
+.mdCardDark{
+  background-color: #171717 !important;
+  color: white !important;
+}
+
 /*
  * scroll chrome
  */

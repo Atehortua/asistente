@@ -44,12 +44,31 @@
         <div flex="50" layout="column" flex-xs="100">
           <div flex="100">
             <md-card class="mini-box1 md-whiteframe-5dp">
-              <md-card-title class="tituloCard" layout="column">
+              <md-card-title class="tituloCard mdCardDark" layout="column">
                 <span>
-                  <md-icon class="material-icons space-right">attach_file</md-icon><span>Links</span>
+                  <md-icon class="material-icons space-right">attach_file</md-icon><span class="mdl-badge mdl-badge--no-background" data-badge="{{links.length}}">Links</span>
                   <md-icon class="material-icons pull-right add-links">add_box</md-icon>
+                  <md-icon ng-click="filterLinks = !filterLinks" ng-class="{'add-links-active':filterLinks}" class="material-icons pull-right add-links">filter_list</md-icon>
                 </span>
               </md-card-title>
+              <md-card-content ng-show="filterLinks" md-theme="docs-dark" class="md-whiteframe-4dp mdCardDark">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <md-icon class="material-icons">search</md-icon>
+                  <input ng-keyUp="filtrarLinks()" ng-model="filtroLinks" type="text">
+                </md-input-container>
+              </md-card-content>
+              <md-card-content id="links" class="card-scroll mdContentLinks">
+                <div ng-repeat="link in links">
+                  <md-card ng-show="link.visible" class="card-links md-whiteframe-5dp" ng-class="link.categoria">
+                    <md-card-title><a target="_blank" ng-href="{{link.link}}" >{{link.name}}</a></md-card-title>
+                  </md-card>
+                </div>
+              </md-card-content>
+              <md-card-footer class="mdCardDark" layout="row"  layout-align="space-around center">
+                <span><md-icon class="material-icons">star</md-icon> {{getFavoriteLinks()}}</span>
+                <span><md-icon class="material-icons">visibility</md-icon> {{getVisibleLinks()}}</span>
+                <span><md-icon class="material-icons">filter</md-icon> {{getCategoriaLinks()}}</span>
+              </md-card-footer>
             </md-card>
           </div>
           <div flex="100">

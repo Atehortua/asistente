@@ -12,6 +12,9 @@ angular.module(ApplicationConfiguration.applicationModuleName).config([
     /*$mdThemingProvider.theme('default')
         .primaryPalette('blue-grey',{'default':'500'})
         .accentPalette('grey');*/
+    $mdThemingProvider.theme('docs-dark', 'default')
+        .primaryPalette('amber')
+        .dark();
   }
 ]);
 
