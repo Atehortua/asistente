@@ -27,8 +27,64 @@
     font-size: 1.2em;
 }
 
-.space-left{
+.space-right{
     margin-right: 8px;
     color:white;
     font-size: 1.3em;
+}
+
+.add-financial{
+    color:white;
+    cursor: pointer;
+}
+
+.add-financial:hover{
+    transition: color 0.5s;
+    color: #00ca25;
+}
+
+.add-recordatorio{
+    color:white;
+    cursor: pointer;
+}
+
+.add-recordatorio:hover{
+    transition: color 0.5s;
+    color: #ca242c;
+}
+
+.add-book{
+    color:white;
+    cursor: pointer;
+}
+
+.add-book:hover{
+    transition: color 0.5s;
+    color: #2da3ca;
+}
+.add-links{
+    color:white;
+    cursor: pointer;
+}
+
+.add-links:hover{
+    transition: color 0.5s;
+    color: #ca9a23;
+}
+.add-codigos{
+    color:white;
+    cursor: pointer;
+}
+
+.add-codigos:hover{
+    transition: color 0.5s;
+    color: #522aca;
+}
+.change-parralax{
+    cursor: pointer;
+}
+
+.change-parralax:hover md-icon{
+    transition: color 0.5s;
+    color: #3dc1ff;
 }
