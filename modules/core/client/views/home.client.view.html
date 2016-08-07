@@ -48,7 +48,7 @@
               <md-card-title class="tituloCard mdCardDark" layout="column">
                 <span>
                   <md-icon class="material-icons space-right">attach_file</md-icon><span class="mdl-badge mdl-badge--no-background" data-badge="{{links.length}}">Links</span>
-                  <md-icon class="material-icons pull-right add-links">
+                  <md-icon class="material-icons pull-right add-links" ng-click="showFormu($event)">
                     <md-tooltip md-direction="top">Agregar links</md-tooltip>add_box
                   </md-icon>
                   <md-icon ng-click="filterLinks = !filterLinks" ng-class="{'add-links-active':filterLinks}" class="material-icons pull-right add-links">
@@ -63,7 +63,7 @@
                 </md-input-container>
               </md-card-content>
               <md-card-content id="links" class="card-scroll mdContentLinks">
-                <div ng-repeat="link in links">
+                <div ng-repeat="link in links track by $index">
                   <md-card ng-show="link.visible" class="card-links md-whiteframe-5dp" ng-class="link.categoria">
                     <md-card-title layout="column">
                       <span>
@@ -100,3 +100,52 @@
 
   </div>
 </div>
+
+<!-- formulario de links -->
+<script type="text/ng-template" id="formulario-links.tmpl.html">
+  <md-dialog aria-label="Mango (Fruit)"  class="sizeDialogo" ng-cloak>
+    <form ng-submit="agregarLink(newLink)">
+      <md-toolbar class="theme-dark-header md-whiteframe-5dp">
+        <div class="md-toolbar-tools">
+          <h2>Agregar</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon class="material-icons" aria-label="Close dialog">clear</md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+
+      <md-dialog-content class="theme-dark-content theme-dark-text" >
+        <div class="md-dialog-content" md-theme="docs-dark">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Titulo</label>
+            <input ng-model="newLink.name" required>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>URL</label>
+            <input ng-model="newLink.link" required>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Categorias</label>
+            <md-select ng-model="newLink.categoria">
+              <md-option ng-repeat="catego in categoLinks track by $index" value="{{catego}}">
+                {{catego}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <br>
+        <md-divider></md-divider>
+        <div layout="row"  layout-align="space-around end" class="mdCardDark">
+          <md-button class="md_raised cancel" ng-click="cancel()">
+            cancelar
+          </md-button>
+          <md-button class="md_raised aceptar" type="submit">
+            agregar
+          </md-button>
+        </div>
+      </md-dialog-content>
+
+    </form>
+  </md-dialog>
+</script>

@@ -174,3 +174,18 @@ md-input-container {
     height: 300px;;
 }
 
+
+/*dialogo factura*/
+
+.text-white{
+    color:white;
+}
+
+.cancel:hover{
+    color: #ff4141 !important;
+}
+
+.aceptar:hover{
+
+    color: #00af23 !important;
+}

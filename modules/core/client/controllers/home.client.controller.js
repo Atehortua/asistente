@@ -86,11 +86,60 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
           b.push(a[i]);
         }
       }
-
       return b.length
     }
+
+    $scope.showFormu = function(ev) {
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'formulario-links.tmpl.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen
+      })
+          .then(function(newLink) {
+            /* aca va la funcion a la base de datos */
+            $scope.links.push(newLink)
+          }, function() {
+            $scope.status = 'You cancelled the dialog.';
+          });
+      $scope.$watch(function() {
+        return $mdMedia('xs') || $mdMedia('sm');
+      }, function(wantsFullScreen) {
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
+    };
 
 
   }
 
 ]);
+
+function DialogController($scope, $mdDialog) {
+
+  $scope.categoLinks = ['entretenimiento','redes','ocio','estudio'];
+
+  /**
+   * cerrar el dialogo
+   */
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  /**
+   * cerrar el dialogo
+   */
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.agregarLink = function(newLink){
+    newLink.visible = true;
+    newLink.favorito = false;
+    $mdDialog.hide(newLink);
+  }
+
+
+}
