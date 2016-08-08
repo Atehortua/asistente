@@ -1,15 +1,21 @@
 'use strict';
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$mdSidenav', '$mdBottomSheet', '$mdDialog','$mdToast','$timeout','$mdMedia',
-  function($scope, Authentication,  $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast, $timeout, $mdMedia) {
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$mdSidenav', '$mdBottomSheet', '$mdDialog','$mdToast','$timeout','$mdMedia','Links',
+  function($scope, Authentication,  $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast, $timeout, $mdMedia,Links) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
 
     var ul = this
 
+    $scope.getLinks = function(){
+      $scope.links = Links.query();
+    }
+
+    $scope.getLinks();
+
     $scope.categoLinks = ['entretenimiento','redes','ocio','estudio'];
 
-    $scope.links = [
+    /*$scope.links = [
       {name:'Google',
         categoria:$scope.categoLinks[0],
         link:'https://www.google.com.co',
@@ -32,7 +38,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         visible:true,
         favorito:false
       }
-    ]
+    ]*/
 
     $scope.filtroLinks = "";
     $scope.filtrarLinks = function() {
@@ -101,7 +107,15 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       })
           .then(function(newLink) {
             /* aca va la funcion a la base de datos */
-            $scope.links.push(newLink)
+            Links.save({name:newLink.name,link:newLink.link,categoria:newLink.categoria,visible:newLink.visible,favorito:newLink.favorito},function(response){
+              if(response.status){
+                $scope.getLinks();
+                console.log("agrego bien",response.link)
+              }else{
+                console.log("fallo el agregar")
+              }
+            })
+            $scope.getLinks
           }, function() {
             $scope.status = 'You cancelled the dialog.';
           });
