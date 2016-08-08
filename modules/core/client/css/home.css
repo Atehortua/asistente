@@ -97,6 +97,7 @@
 /*links*/
 #links .card-links{
     opacity: 0.5;
+    background: #464646 !important;
 }
 
 #links .card-links:hover{
@@ -113,19 +114,49 @@
     overflow: auto;
 }
 
+#links md-card-title{
+    padding: 16px 6px 13px !important;
+}
+
+#links .estudio .iconoCategoria{
+    background-image: url('../img/brand/books-stack-of-three.png');
+}
+
 #links .estudio{
-    border-bottom: 2px solid #2334ff;
+    background:  #5e53ff !important;
+    border-bottom: 2px solid #443bb2;
+}
+
+#links .ocio .iconoCategoria{
+    background-image: url('../img/brand/kite.png');
 }
 
 #links .ocio{
-    border-bottom: 2px solid #4aff44;
+    background:  #d251ff !important;
+    border-bottom: 2px solid #8c3aae;
 }
+
 #links .redes{
-    border-bottom: 2px solid white;
+    background:  #1ebd2a !important;
+    border-bottom: 2px solid #17841e;
+}
+
+#links .entretenimiento .iconoCategoria{
+    background-image: url('../img/brand/tv.png');
 }
 
 #links .entretenimiento{
-    border-bottom: 2px solid #ff332f;
+    background:  #ff4f57 !important;
+    border-bottom: 2px solid #d34348;
+}
+
+#links .otros .iconoCategoria{
+    background-image: url('../img/brand/domain-registration.png');
+}
+
+#links .otros{
+    background:  #ffb73e !important;
+    border-bottom: 2px solid #c78e32;
 }
 
 #links .favorito-activo{
@@ -134,35 +165,14 @@
     outline: none;
 }
 
-#links .favorito{
+#links .crud{
     color:white;
     cursor: pointer;
     outline: none;
 }
 
-#links .favorito:hover{
-    color: #ca9a23;
-}
-
-#links .delete{
-    color: white;
-    cursor: pointer;
-    outline: none;
-}
-#links .delete:hover{
-    transition: color 0.5s;
-    color: #ff4144;
-}
-
-#links .create{
-    color: white;
-    cursor: pointer;
-    outline: none;
-}
-
-#links .create:hover{
-    transition: color 0.5s;
-    color: #14a0ff;
+#links .crud:hover{
+    color: #1f1f1f;
 }
 
 md-input-container {
@@ -189,3 +199,8 @@ md-input-container {
 
     color: #00af23 !important;
 }
+
+.capitalize{
+    text-transform: capitalize;
+}
+

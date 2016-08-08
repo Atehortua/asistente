@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$mdSidenav', '$mdBottomSheet', '$mdDialog','$mdToast','$timeout','$mdMedia','Links',
-  function($scope, Authentication,  $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast, $timeout, $mdMedia,Links) {
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$mdSidenav', '$mdBottomSheet', '$mdDialog','$mdToast','$timeout','$mdMedia','Links','$rootScope',
+  function($scope, Authentication,  $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast, $timeout, $mdMedia,Links,$rootScope) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
 
@@ -13,7 +13,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
     $scope.getLinks();
 
-    $scope.categoLinks = ['entretenimiento','redes','ocio','estudio'];
+    $rootScope.categoLinks = ['entretenimiento','redes','ocio','estudio','otros'];
 
     /*$scope.links = [
       {name:'Google',
@@ -131,9 +131,9 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
 ]);
 
-function DialogController($scope, $mdDialog) {
+function DialogController($scope, $mdDialog,$rootScope) {
 
-  $scope.categoLinks = ['entretenimiento','redes','ocio','estudio'];
+  $scope.categoLinks = $rootScope.categoLinks;
 
   /**
    * cerrar el dialogo

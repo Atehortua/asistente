@@ -67,10 +67,11 @@
                   <md-card ng-show="link.visible" class="card-links md-whiteframe-5dp" ng-class="link.categoria">
                     <md-card-title layout="column">
                       <span>
-                        <a target="_blank" ng-href="{{link.link}}" ><md-tooltip md-direction="top">{{link.link}}</md-tooltip>{{link.name}}</a>
-                        <md-icon class="material-icons pull-right delete" ng-click=""><md-tooltip md-direction="top">Eliminar link</md-tooltip>delete</md-icon>
-                        <md-icon class="material-icons pull-right create" ng-click=""><md-tooltip md-direction="top">Editar link</md-tooltip>create</md-icon>
-                        <md-icon ng-if="!link.favorito" class="material-icons pull-right favorito" ng-click="link.favorito = !link.favorito"><md-tooltip md-direction="top">Favorito</md-tooltip>star_border</md-icon>
+                        <md-icon class="iconoCategoria"></md-icon>
+                        <a target="_blank" ng-href="{{link.link}}" class="text" ><md-tooltip md-direction="top">{{link.link}}</md-tooltip>{{link.name}}</a>
+                        <md-icon class="material-icons pull-right crud" ng-click=""><md-tooltip md-direction="top">Eliminar link</md-tooltip>delete</md-icon>
+                        <md-icon class="material-icons pull-right crud" ng-click=""><md-tooltip md-direction="top">Editar link</md-tooltip>create</md-icon>
+                        <md-icon ng-if="!link.favorito" class="material-icons pull-right crud favorito" ng-click="link.favorito = !link.favorito"><md-tooltip md-direction="top">Favorito</md-tooltip>star_border</md-icon>
                         <md-icon ng-if="link.favorito" class="material-icons pull-right favorito-activo" ng-click="link.favorito = !link.favorito"><md-tooltip md-direction="top">Favorito</md-tooltip>star</md-icon>
                       </span>
                     </md-card-title>
@@ -119,7 +120,7 @@
         <div class="md-dialog-content" md-theme="docs-dark">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Titulo</label>
-            <input ng-model="newLink.name" required>
+            <input ng-model="newLink.name" md-maxlength="25" required>
           </md-input-container>
           <md-input-container class="md-block" flex-gt-sm>
             <label>URL</label>
@@ -129,7 +130,7 @@
             <label>Categorias</label>
             <md-select ng-model="newLink.categoria">
               <md-option ng-repeat="catego in categoLinks track by $index" value="{{catego}}">
-                {{catego}}
+                <span class="capitalize">{{catego}}</span>
               </md-option>
             </md-select>
           </md-input-container>
