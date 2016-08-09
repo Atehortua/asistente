@@ -33,3 +33,49 @@ exports.add = function(req,res){
         }
     });
 };
+
+exports.update = function(req,res){
+    var linkUpdate = req.body;
+    console.log(linkUpdate._id)
+    AssistantDb.findOne({_id: linkUpdate._id},function(err,link){
+        if(link !== null){
+            link.name = linkUpdate.name;
+            link.categoria = linkUpdate.categoria;
+            link.link = linkUpdate.link;
+            link.favorito = linkUpdate.favorito;
+            link.visible = linkUpdate.visible;
+
+            link.save(function(err){
+                if(!err){
+                    console.log("Se actuliazo exitosamente el link", link);
+                    return res.jsonp({status:true});
+                }else{
+                    return res.jsonp({status:false});
+                }
+            });
+        }else{
+            return res.jsonp({status:false});
+        }
+    });
+};
+
+
+exports.destroy = function(req,res){
+    var deleteLink = req.params.id;
+    AssistantDb.findOne({_id: deleteLink},function(err,link){
+        if(link){
+            link.remove(function(err){
+                if(!err){
+                    console.log("Se elimino exitosamente el link ",link)
+                    return res.jsonp({status:true,link:link});
+                }else{
+                    console.log("Problema", err)
+                    return res.jsonp({status:false,link:link});
+                }
+            })
+        }else{
+            console.log("No se elimino el linl")
+            return res.jsonp({status:false});
+        }
+    })
+};

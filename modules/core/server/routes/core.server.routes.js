@@ -8,6 +8,8 @@ module.exports = function (app) {
 
   app.route('/api/links/').get(assistant.findLinks);
   app.route('/api/links/').post(assistant.add);
+  app.route('/api/links/:id').put(assistant.update);
+  app.route('/api/links/:id').delete(assistant.destroy);
 
   // Define error pages
   app.route('/server-error').get(core.renderServerError);

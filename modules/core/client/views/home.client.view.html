@@ -48,7 +48,7 @@
               <md-card-title class="tituloCard mdCardDark" layout="column">
                 <span>
                   <md-icon class="material-icons space-right">attach_file</md-icon><span class="mdl-badge mdl-badge--no-background" data-badge="{{links.length}}">Links</span>
-                  <md-icon class="material-icons pull-right add-links" ng-click="showFormu($event)">
+                  <md-icon class="material-icons pull-right add-links" ng-click="showFormu($event,'add')">
                     <md-tooltip md-direction="top">Agregar links</md-tooltip>add_box
                   </md-icon>
                   <md-icon ng-click="filterLinks = !filterLinks" ng-class="{'add-links-active':filterLinks}" class="material-icons pull-right add-links">
@@ -69,10 +69,10 @@
                       <span>
                         <md-icon class="iconoCategoria"></md-icon>
                         <a target="_blank" ng-href="{{link.link}}" class="text" ><md-tooltip md-direction="top">{{link.link}}</md-tooltip>{{link.name}}</a>
-                        <md-icon class="material-icons pull-right crud" ng-click=""><md-tooltip md-direction="top">Eliminar link</md-tooltip>delete</md-icon>
-                        <md-icon class="material-icons pull-right crud" ng-click=""><md-tooltip md-direction="top">Editar link</md-tooltip>create</md-icon>
-                        <md-icon ng-if="!link.favorito" class="material-icons pull-right crud favorito" ng-click="link.favorito = !link.favorito"><md-tooltip md-direction="top">Favorito</md-tooltip>star_border</md-icon>
-                        <md-icon ng-if="link.favorito" class="material-icons pull-right favorito-activo" ng-click="link.favorito = !link.favorito"><md-tooltip md-direction="top">Favorito</md-tooltip>star</md-icon>
+                        <md-icon class="material-icons pull-right crud" ng-click="deleteLink(link._id)"><md-tooltip md-direction="top">Eliminar link</md-tooltip>delete</md-icon>
+                        <md-icon class="material-icons pull-right crud" ng-click="showFormu($event,'update',link)"><md-tooltip md-direction="top">Editar link</md-tooltip>create</md-icon>
+                        <md-icon ng-if="!link.favorito" class="material-icons pull-right crud favorito" ng-click="favoritoLink(link,true)"><md-tooltip md-direction="top">Favorito</md-tooltip>star_border</md-icon>
+                        <md-icon ng-if="link.favorito" class="material-icons pull-right favorito-activo" ng-click="favoritoLink(link,false)"><md-tooltip md-direction="top">Favorito</md-tooltip>star</md-icon>
                       </span>
                     </md-card-title>
                   </md-card>
@@ -108,7 +108,8 @@
     <form ng-submit="agregarLink(newLink)">
       <md-toolbar class="theme-dark-header md-whiteframe-5dp">
         <div class="md-toolbar-tools">
-          <h2>Agregar</h2>
+          <h2  ng-show="accionFormu === 'add'">Agregar</h2>
+          <h2  ng-show="accionFormu === 'update'">Actualizar</h2>
           <span flex></span>
           <md-button class="md-icon-button" ng-click="cancel()">
             <md-icon class="material-icons" aria-label="Close dialog">clear</md-icon>
@@ -120,7 +121,7 @@
         <div class="md-dialog-content" md-theme="docs-dark">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Titulo</label>
-            <input ng-model="newLink.name" md-maxlength="25" required>
+            <input ng-model="newLink.name" md-maxlength="20" required>
           </md-input-container>
           <md-input-container class="md-block" flex-gt-sm>
             <label>URL</label>
@@ -141,8 +142,11 @@
           <md-button class="md_raised cancel" ng-click="cancel()">
             cancelar
           </md-button>
-          <md-button class="md_raised aceptar" type="submit">
+          <md-button ng-show="accionFormu === 'add'" class="md_raised aceptar" type="submit">
             agregar
+          </md-button>
+          <md-button ng-show="accionFormu === 'update'" class="md_raised aceptar" type="submit">
+            actualizar
           </md-button>
         </div>
       </md-dialog-content>

@@ -95,7 +95,10 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       return b.length
     }
 
-    $scope.showFormu = function(ev) {
+    $rootScope.accionFormu = '';
+    $scope.showFormu = function(ev,accionFormu,data) {
+      $rootScope.accionFormu = angular.copy(accionFormu);
+      $rootScope.newLink = angular.copy(data);
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
         controller: DialogController,
@@ -107,15 +110,31 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       })
           .then(function(newLink) {
             /* aca va la funcion a la base de datos */
-            Links.save({name:newLink.name,link:newLink.link,categoria:newLink.categoria,visible:newLink.visible,favorito:newLink.favorito},function(response){
-              if(response.status){
-                $scope.getLinks();
-                console.log("agrego bien",response.link)
-              }else{
-                console.log("fallo el agregar")
-              }
-            })
-            $scope.getLinks
+            if($rootScope.accionFormu === 'add'){
+              Links.save({name:newLink.name,link:newLink.link,categoria:newLink.categoria,visible:newLink.visible,favorito:newLink.favorito},function(response){
+                if(response.status){
+                  $scope.getLinks();
+                  console.log("agrego bien",response.link)
+                }else{
+                  console.log("fallo el agregar")
+                }
+              })
+            }else if($rootScope.accionFormu === 'update'){
+              Links.update({_id:newLink._id,name:newLink.name,link:newLink.link,categoria:newLink.categoria,visible:newLink.visible,favorito:newLink.favorito},function(response){
+                if(response.status){
+                  $scope.links.forEach(function(link){
+                    if(link._id === newLink._id){
+                      link.name = newLink.name;
+                      link.link = newLink.link;
+                      link.categoria = newLink.categoria;
+                    }
+                  });
+                  console.log("actualizo bien")
+                }else{
+                  console.log("fallo el actualizar")
+                }
+              })
+            }
           }, function() {
             $scope.status = 'You cancelled the dialog.';
           });
@@ -126,6 +145,37 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       });
     };
 
+    $scope.favoritoLink = function(newLink,favo){
+      Links.update({_id:newLink._id,name:newLink.name,link:newLink.link,categoria:newLink.categoria,visible:newLink.visible,favorito:favo},function(response){
+        if(response.status){
+          console.log("Favortito true")
+          $scope.links.forEach(function(link){
+            if(link._id === newLink._id){
+              link.favorito = favo;
+            }
+          })
+        }else{
+          console.log("Favortito false")
+        }
+      })
+    }
+
+    $scope.deleteLink = function(idLink){
+      $scope.links.forEach(function(link,index){
+        if(link._id === idLink){
+          link.$remove(function(response){
+            if(response.status){
+              console.log("Se elimino",response.link)
+              $scope.links.splice(index,1)
+            }else{
+              console.log("Fallo al eliminar")
+            }
+          })
+        }
+      })
+    }
+
+
 
   }
 
@@ -134,6 +184,10 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 function DialogController($scope, $mdDialog,$rootScope) {
 
   $scope.categoLinks = $rootScope.categoLinks;
+  $scope.accionFormu = $rootScope.accionFormu;
+  $scope.newLink = $rootScope.newLink;
+
+
 
   /**
    * cerrar el dialogo
@@ -150,9 +204,13 @@ function DialogController($scope, $mdDialog,$rootScope) {
   };
 
   $scope.agregarLink = function(newLink){
-    newLink.visible = true;
-    newLink.favorito = false;
-    $mdDialog.hide(newLink);
+    if($scope.accionFormu === 'add'){
+      newLink.visible = true;
+      newLink.favorito = false;
+      $mdDialog.hide(newLink);
+    }else if ($scope.accionFormu === 'update'){
+      $mdDialog.hide(newLink);
+    }
   }
 
 

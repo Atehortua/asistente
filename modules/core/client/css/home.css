@@ -136,6 +136,10 @@
     border-bottom: 2px solid #8c3aae;
 }
 
+#links .redes .iconoCategoria{
+    background-image: url('../img/brand/chat-oval-speech-bubbles-symbol.png');
+}
+
 #links .redes{
     background:  #1ebd2a !important;
     border-bottom: 2px solid #17841e;
