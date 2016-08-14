@@ -68,7 +68,7 @@
                 </span>
               </md-card-content>
               <md-card-content class="card-scroll mdContentLinks">
-                <div ng-repeat="link in links track by $index">
+                <div ng-repeat="link in links  | orderBy:'name' track by $index ">
                   <md-card ng-show="link.visible" class="card-links md-whiteframe-5dp" ng-class="link.categoria">
                     <md-card-title layout="column">
                       <span>
