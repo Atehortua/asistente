@@ -118,6 +118,46 @@
     padding: 16px 6px 13px !important;
 }
 
+#links .icoActivo{
+    opacity: 1 !important;
+}
+
+#links .icoEstu{
+    background-image: url('../img/brand/books-stack-of-three.png');
+    margin-bottom: 5px;
+    opacity: 0.2;
+    outline: none;
+}
+#links .icoOcio{
+    background-image: url('../img/brand/kite.png');
+    margin-bottom: 5px;
+    opacity: 0.2;
+    outline: none;
+}
+#links .icoRedes{
+    background-image: url('../img/brand/chat-oval-speech-bubbles-symbol.png');
+    margin-bottom: 5px;
+    opacity: 0.2;
+    outline: none;
+}
+#links .icoOtros{
+    background-image: url('../img/brand/domain-registration.png');
+    margin-bottom: 5px;
+    opacity: 0.2;
+    outline: none;
+}
+#links .icoStar{
+    margin-bottom: 5px;
+    opacity: 0.2;
+    outline: none;
+}
+#links .icoEntre{
+    background-image: url('../img/brand/tv.png');
+    margin-bottom: 5px;
+    opacity: 0.2;
+    outline: none;
+}
+
 #links .estudio .iconoCategoria{
     background-image: url('../img/brand/books-stack-of-three.png');
 }

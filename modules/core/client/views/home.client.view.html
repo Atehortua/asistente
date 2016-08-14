@@ -42,7 +42,7 @@
           </md-card>
         </div>
         <!-- links -->
-        <div flex="50" layout="column" flex-xs="100">
+        <div flex="50" layout="column" flex-xs="100" id="links">
           <div flex="100">
             <md-card class="mini-box1 md-whiteframe-5dp">
               <md-card-title class="tituloCard mdCardDark" layout="column">
@@ -61,8 +61,13 @@
                   <md-icon class="material-icons">search</md-icon>
                   <input ng-keyUp="filtrarLinks()" ng-model="filtroLinks" type="text">
                 </md-input-container>
+                <span layout="row">
+                  <md-icon ng-click="filtroCategortia('estudio')" class="icoEstu" ng-class="{'icoActivo':filtroCatego['estudio']}"></md-icon><md-icon ng-click="filtroCategortia('redes')" class="icoRedes" ng-class="{'icoActivo':filtroCatego['redes']}"></md-icon>
+                  <md-icon ng-click="filtroCategortia('entretenimiento')" class="icoEntre"  ng-class="{'icoActivo':filtroCatego['entretenimiento']}"></md-icon><md-icon ng-click="filtroCategortia('ocio')" class="icoOcio"  ng-class="{'icoActivo':filtroCatego['ocio']}"></md-icon>
+                  <md-icon ng-click="filtroCategortia('otros')" class="icoOtros"  ng-class="{'icoActivo':filtroCatego['otros']}"></md-icon><md-icon ng-click="filtroCategortia('favorito')" class="icoStar"  ng-class="{'icoActivo':filtroCatego['favorito']}">star</md-icon>
+                </span>
               </md-card-content>
-              <md-card-content id="links" class="card-scroll mdContentLinks">
+              <md-card-content class="card-scroll mdContentLinks">
                 <div ng-repeat="link in links track by $index">
                   <md-card ng-show="link.visible" class="card-links md-whiteframe-5dp" ng-class="link.categoria">
                     <md-card-title layout="column">

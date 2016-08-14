@@ -44,17 +44,95 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     $scope.filtrarLinks = function() {
       var matcher = new RegExp($scope.filtroLinks.toUpperCase());
       var match = false;
-      $scope.links.forEach(function(link,index){
-        var cadena = link.name.toUpperCase();
-        cadena = cadena.toString();
-        console.log(cadena.match(matcher))
-        if(cadena.match(matcher)){
-          $scope.links[index].visible = true;
+      if($scope.filtroCatego[$scope.oldCatego] === true){
+       if($scope.oldCatego !== "favorito"){
+         $scope.links.forEach(function(link,index){
+           if(link.categoria === $scope.oldCatego){
+             var cadena = link.name.toUpperCase();
+             cadena = cadena.toString();
+             if(cadena.match(matcher)){
+               $scope.links[index].visible = true;
+             }else{
+               $scope.links[index].visible = false;
+             }
+           }else{
+             $scope.links[index].visible = false;
+           }
+         });
+       }else{
+         $scope.links.forEach(function(link,index){
+           if(link.favorito === true){
+             var cadena = link.name.toUpperCase();
+             cadena = cadena.toString();
+             if(cadena.match(matcher)){
+               $scope.links[index].visible = true;
+             }else{
+               $scope.links[index].visible = false;
+             }
+           }else{
+             $scope.links[index].visible = false;
+           }
+         });
+       }
+      }else{
+        $scope.links.forEach(function(link,index){
+          var cadena = link.name.toUpperCase();
+          cadena = cadena.toString();
+          if(cadena.match(matcher)){
+            $scope.links[index].visible = true;
+          }else{
+            $scope.links[index].visible = false;
+          }
+        });
+      }
+    };
+
+    /*condigo de filtro
+     var matcher = new RegExp($scope.filtroLinks.toUpperCase());
+     var match = false;
+     $scope.links.forEach(function(link,index){
+       var cadena = link.name.toUpperCase();
+       cadena = cadena.toString();
+       if(cadena.match(matcher)){
+         $scope.links[index].visible = true;
+       }else{
+         $scope.links[index].visible = false;
+       }
+     });
+    */
+
+    $scope.filtroCatego = [];
+    $scope.oldCatego = "";
+    $scope.filtroCategortia = function(categoria){
+      if($scope.oldCatego !== categoria){
+        $scope.filtroCatego[$scope.oldCatego] = false;
+        $scope.filtrarLinks();
+      }
+      if($scope.filtroCatego[categoria] === true){
+        $scope.filtroCatego[categoria] = false;
+        $scope.filtrarLinks();
+      }else{
+        $scope.oldCatego = angular.copy(categoria);
+        if(categoria !== 'favorito'){
+          $scope.links.forEach(function(link){
+            if(link.visible === true){
+              if(link.categoria != categoria){
+                link.visible = false;
+              }
+            }
+          })
         }else{
-          $scope.links[index].visible = false;
+          $scope.links.forEach(function(link){
+            if(link.visible === true){
+              if(link.favorito === false){
+                link.visible = false;
+              }
+            }
+          })
         }
-      });
-    }
+        $scope.filtroCatego[categoria] = true;
+      }
+    };
 
     $scope.getFavoriteLinks = function(){
       var c = 0;
@@ -177,6 +255,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
 
 
+
+
   }
 
 ]);
@@ -212,6 +292,7 @@ function DialogController($scope, $mdDialog,$rootScope) {
       $mdDialog.hide(newLink);
     }
   }
+
 
 
 }
