@@ -31,14 +31,41 @@
         </div>
       </div>
       <div flex="50" flex-sm="100" flex-xs="100" layout="row" layout-xs="column">
-        <div flex="50" flex-xs="100">
+        <div flex="50" flex-xs="100" id="book">
           <md-card class="box md-whiteframe-5dp">
-            <md-card-title class="tituloCard" layout="column">
-               <span>
+            <md-card-title class="tituloCard mdCardDark" layout="column">
+              <span>
                 <md-icon class="material-icons space-right">import_contacts</md-icon><span>Book</span>
-                 <md-icon class="material-icons pull-right add-book">add_box</md-icon>
+                <md-icon class="material-icons pull-right add-book">add_box</md-icon>
               </span>
             </md-card-title>
+            <md-card-content class="card-scroll">
+              <div ng-repeat="book in books | orderBy:'create' track by $index">
+                <md-card ng-show="book.visible" class="card-book md-whiteframe-5dp">
+                  <md-card-title class="mdCardTitle" layout="column">
+                    <span>
+                      <strong>{{book.asunto}}</strong>
+                      <span>
+                        <md-icon class="material-icons pull-right crud" ng-click=""><md-tooltip md-direction="top">Eliminar Hoja</md-tooltip>delete</md-icon>
+                        <md-icon class="material-icons pull-right crud" ng-click=""><md-tooltip md-direction="top">Editar Hoja</md-tooltip>create</md-icon>
+                      </span>
+                    </span>
+                  </md-card-title>
+                  <div class="width95"><md-divider class="mdDivider"></md-divider></div>
+                  <md-card-content class="contentPage">
+                    <span>{{book.contenido}}</span>
+                  </md-card-content>
+                  <md-card-actions layout="column" layout-aling="end end">
+                      <span>
+                        <span class="pull-right text-grey">{{book.create}}</span>
+                      </span>
+                  </md-card-actions>
+                </md-card>
+              </div>
+            </md-card-content>
+            <md-card-footer class="mdCardDark" layout="row"  layout-align="space-around center">
+              <span><md-tooltip md-direction="bottom"># Favoritos</md-tooltip><md-icon class="material-icons">description</md-icon> {{getFavoriteLinks()}}</span>
+            </md-card-footer>
           </md-card>
         </div>
         <!-- links -->
@@ -70,7 +97,7 @@
               <md-card-content class="card-scroll mdContentLinks">
                 <div ng-repeat="link in links  | orderBy:'name' track by $index ">
                   <md-card ng-show="link.visible" class="card-links md-whiteframe-5dp" ng-class="link.categoria">
-                    <md-card-title layout="column">
+                    <md-card-title class="mdCardTitle" layout="column">
                       <span>
                         <md-icon class="iconoCategoria"></md-icon>
                         <a target="_blank" ng-href="{{link.link}}" class="text" ><md-tooltip md-direction="top">{{link.link}}</md-tooltip>{{link.name}}</a>

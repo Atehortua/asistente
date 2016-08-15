@@ -9,7 +9,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
     $scope.getLinks = function(){
       $scope.links = Links.query();
-    }
+    };
 
     $scope.getLinks();
 
@@ -253,7 +253,32 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       })
     }
 
-
+    $scope.books = [
+      {
+        asunto:'Prueba',
+        img:false,
+        rutaImg:'',
+        contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer molestie faucibus fermentum. Proin in sem quis ipsum convallis posuere. Etiam eu pellentesque nibh. Donec scelerisque ac odio maximus tincidunt. Morbi nec quam auctor, varius justo eget, consequat quam. Sed convallis ornare leo eu tincidunt. Curabitur lobortis lacus in ipsum ultricies, sed rhoncus nisl hendrerit. Morbi bibendum at orci a elementum. Mauris vestibulum id sapien ac malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras vitae tortor blandit, rhoncus nisl et, varius arcu. Aenean imperdiet ante suscipit dui pulvinar rhoncus. Vestibulum dapibus rhoncus lectus a mattis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce nec sem massa.',
+        create:'12/08/2016',
+        visible:true
+      },
+      {
+        asunto:'Prueba2',
+        img:false,
+        rutaImg:'',
+        contenido: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer molestie faucibus fermentum. Proin in sem quis ipsum convallis posuere. Etiam eu pellentesque nibh. Donec scelerisque ac odio maximus tincidunt. Morbi nec quam auctor, varius justo eget, consequat quam. Sed convallis ornare leo eu tincidunt. Curabitur lobortis lacus in ipsum ultricies, sed rhoncus nisl hendrerit. Morbi bibendum at orci a elementum. Mauris vestibulum id sapien ac malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras vitae tortor blandit, rhoncus nisl et, varius arcu. Aenean imperdiet ante suscipit dui pulvinar rhoncus. Vestibulum dapibus rhoncus lectus a mattis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce nec sem massa.',
+        create:'16/08/2016',
+        visible:true
+      },
+      {
+        asunto:'Prueba3',
+        img:false,
+        rutaImg:'',
+        contenido: 'Lorem ipsum dolor sit amet, Cras vitae tortor blandit, rhoncus nisl et, varius arcu. Aenean imperdiet ante suscipit dui pulvinar rhoncus. Vestibulum dapibus rhoncus lectus a mattis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce nec sem massa.',
+        create:'02/08/2016',
+        visible:true
+      }
+    ];
 
 
 

@@ -91,3 +91,8 @@ a:hover .header-profile-image {
   padding-top: 20px;
   font-size: 1.1em;
 }
+
+.width95{
+  width: 95%!important;
+  margin: auto;
+}
