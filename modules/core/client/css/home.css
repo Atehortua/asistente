@@ -256,6 +256,13 @@ md-input-container {
     text-overflow:ellipsis;
     white-space:nowrap;
     overflow:hidden;
+    transition: all 1s;
+}
+
+#book .contentPage:hover{
+    background: rgba(69, 69, 69, 0.87);
+    transition: all 3s;
+    color: rgba(53, 208, 255, 0.71);
 }
 
 #book .card-book:hover{
@@ -277,4 +284,48 @@ md-input-container {
 
 #book .text-grey{
     color: #8b8b8b !important;
+}
+
+.sizeDialogoBook{
+    width: 900px;
+    height: 100%;
+}
+
+.bookSize{
+    height: 100%;
+}
+
+.sidebar-nav{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    height: 87%;
+    list-style: none;
+    background: #262626;
+    overflow-y: auto;
+    box-shadow: 3px 0 5px 2px rgba(31, 31, 31, 0.84);
+}
+
+.sidebar-nav li{
+    padding-left: 20px;
+    margin-bottom: 2px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 10px;
+}
+
+.sidebar-nav li:hover{
+    background: #222222;
+}
+
+.sidebar-nav a{
+    text-decoration: none;
+    color: #cbcbcb !important;
+    outline: none;
+}
+
+md-dialog.md-default-theme, md-dialog {
+    border-radius: 4px;
+    background: #393939 !important;
 }

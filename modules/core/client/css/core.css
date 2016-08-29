@@ -38,7 +38,7 @@ a:hover .header-profile-image {
 }
 
 .theme-dark-content{
-  background: #393939;
+  background: #393939 !important;
 }
 
 .theme-dark-content md-card{
@@ -95,4 +95,12 @@ a:hover .header-profile-image {
 .width95{
   width: 95%!important;
   margin: auto;
+}
+
+.textRigth{
+  text-align: right;
+}
+
+*{
+  outline: none;
 }
