@@ -37,6 +37,11 @@ a:hover .header-profile-image {
   color:white !important;
 }
 
+.theme-dark-header-toolbar{
+  background-color: #212121 !important;
+  color:white !important;
+}
+
 .theme-dark-content{
   background: #393939 !important;
 }
@@ -103,4 +108,12 @@ a:hover .header-profile-image {
 
 *{
   outline: none;
+}
+
+.md-datepicker-open .md-datepicker-calendar-icon {
+  fill: #2da3ca;
+}
+
+.marginAuto{
+  margin: auto;
 }

@@ -37,7 +37,7 @@
             <md-card-title class="tituloCard mdCardDark" layout="column">
               <span>
                 <md-icon class="material-icons space-right">import_contacts</md-icon><span>Book</span>
-                <md-icon class="material-icons pull-right add-book" ng-click="showBook()">add_box</md-icon>
+                <md-icon class="material-icons pull-right add-book" ng-click="showBook($event,'','add')">add_box</md-icon>
               </span>
             </md-card-title>
             <md-card-content class="card-scroll">
@@ -191,7 +191,7 @@
 <!-- partial de book -->
 <script type="text/ng-template" id="book.tmpl.html">
   <md-dialog aria-label="Mango (Fruit)"  class="sizeDialogoBook" ng-cloak>
-    <md-toolbar class="theme-dark-header md-whiteframe-5dp">
+    <md-toolbar class="theme-dark-header-toolbar md-whiteframe-5dp">
       <div class="md-toolbar-tools">
         <h2>Book</h2>
         <span flex></span>
@@ -201,18 +201,47 @@
       </div>
     </md-toolbar>
 
-    <md-dialog-content class="theme-dark-content theme-dark-text bookSize"  >
+    <md-dialog-content class="theme-dark-content theme-dark-text bookSize">
       <div layout="row" flex>
         <div  flex="25" layout="column">
           <ul class="sidebar-nav">
             <li ng-repeat="page in books |orderBy:'create' track by $index" ng-click="getContenido(page)">{{page.create}}</li>
           </ul>
         </div>
-        <div flex="75" layout="column" layout-padding class="contenidoBook">
-          <h3>{{contenido.asunto}}</h3>
-          <p>{{contenido.contenido}}</p>
-          <h6 class="textRigth">{{contenido.create}}</h6>
+        <div flex="75" ng-show="!accionBook" layout="column" layout-padding class="contenidoBook">
+          <div >
+            <h3>{{contenido.asunto}}</h3>
+            <p>{{contenido.contenido}}</p>
+            <h6 class="textRigth">{{contenido.create}}</h6>
+          </div>
         </div>
+        <form ng-show="accionBook === 'add'"  flex="75" layout-padding  layout="column" ng-submit="">
+            <div md-theme="docs-dark" layout="column" class="contenidoBook">
+                <h4 class="text-center">Agregar pagina</h4>
+                <md-input-container class="md-block" flex-gt-sm>
+                  <md-icon>face</md-icon>
+                  <label>Asunto</label>
+                  <input ng-model="newBook.asunto" required>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                  <md-icon>subject</md-icon>
+                  <label>Contenido</label>
+                  <textarea  ng-model="newBook.contenido" md-maxlength="200" rows="1" md-select-on-focus></textarea>
+                </md-input-container>
+                <div class="marginAuto">
+                  <md-datepicker flex="30" ng-model="myDate" md-placeholder="Enter date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                </div>
+
+              <div layout="row"  layout-align="space-around end" class="mdCardDark" style="margin-top: 70px">
+                <md-button class="cancel" ng-click="cancel()">
+                  cancelar
+                </md-button>
+                <md-button class="aceptar" type="submit">
+                  agregar
+                </md-button>
+              </div>
+          </div>
+        </form>
       </div>
     </md-dialog-content>
   </md-dialog>

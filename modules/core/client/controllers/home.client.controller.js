@@ -280,7 +280,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       }
     ];
 
-    $scope.showBook = function(ev,pageSelect) {
+    $scope.showBook = function(ev,pageSelect,accion) {
+      $rootScope.accionBook = angular.copy(accion);
       $rootScope.books = angular.copy($scope.books);
       $rootScope.pageSelect = angular.copy(pageSelect);
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -346,12 +347,26 @@ function DialogController($scope, $mdDialog,$rootScope) {
 
 function BookController($scope, $mdDialog,$rootScope) {
 
+  $scope.accionBook = angular.copy($rootScope.accionBook);
   $scope.books = angular.copy($rootScope.books);
   $scope.contenido = angular.copy($rootScope.pageSelect);
 
+  $scope.dateActual = new Date();
+
+  $scope.myDate = new Date();
+  $scope.minDate = new Date(
+      $scope.myDate.getFullYear(),
+      $scope.myDate.getMonth() - 3,
+      $scope.myDate.getDate());
+  $scope.maxDate = new Date(
+      $scope.myDate.getFullYear(),
+      $scope.myDate.getMonth(),
+      $scope.myDate.getDate());
+
+  console.log('Fecha minima',$scope.minDate,' Fecha maxima',$scope.maxDate)
   $scope.getContenido = function(page){
     $scope.contenido = angular.copy(page);
-  }
+  };
   /**
    * cerrar el dialogo
    */
